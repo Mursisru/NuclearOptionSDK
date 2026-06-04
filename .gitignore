@@ -9,3 +9,7 @@ release/
 .capture-frames/
 capture-frames/
 smoke-log.txt
+tools/cap/
+
+# Legacy dump catalog (excluded from build; do not publish)
+src/NuclearOptionSDK.Studio/Services/NoGameParameterCatalog.Data.cs

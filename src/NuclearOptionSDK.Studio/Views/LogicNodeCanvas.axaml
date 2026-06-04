@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="NuclearOptionSDK.Studio.Views.LogicNodeCanvas"
+             DragDrop.AllowDrop="True">
+  <Grid>
+    <ScrollViewer x:Name="GraphScroller"
+                  HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                  DragDrop.AllowDrop="True">
+      <Canvas x:Name="GraphCanvas" MinWidth="1400" MinHeight="520" Background="#0E0E12"
+              ClipToBounds="False"
+              DragDrop.AllowDrop="True" RenderTransformOrigin="0,0">
+      </Canvas>
+    </ScrollViewer>
+
+    <Border HorizontalAlignment="Right" VerticalAlignment="Top"
+            Margin="6,6,6,0" Padding="4,2" ZIndex="20"
+            Background="#CC1E1E1E" CornerRadius="3" BorderBrush="#333" BorderThickness="1">
+      <StackPanel Orientation="Horizontal" Spacing="4">
+        <Button x:Name="ZoomOutButton" Classes="compact icon-btn" Content="-" Width="24" ToolTip.Tip="Zoom out"/>
+        <TextBlock x:Name="ZoomLabel" Text="100%" VerticalAlignment="Center" MinWidth="36" FontSize="10"/>
+        <Button x:Name="ZoomInButton" Classes="compact icon-btn" Content="+" Width="24" ToolTip.Tip="Zoom in"/>
+        <Button x:Name="ZoomResetButton" Classes="compact icon-btn" Content="1:1" Width="32" ToolTip.Tip="Reset zoom"/>
+        <Button x:Name="ClearSandboxButton" Classes="compact" Content="Reset" IsVisible="False"
+                ToolTip.Tip="Reset to selected reference"/>
+      </StackPanel>
+    </Border>
+  </Grid>
+</UserControl>

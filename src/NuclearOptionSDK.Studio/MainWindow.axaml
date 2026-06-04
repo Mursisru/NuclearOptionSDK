@@ -1,0 +1,227 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="using:NuclearOptionSDK.Studio.Views"
+        x:Class="NuclearOptionSDK.Studio.MainWindow"
+        Title="Nuclear Studio"
+        Width="1360" Height="860"
+        MinWidth="1024" MinHeight="640"
+        Background="#1E1E1E">
+  <Grid>
+    <DockPanel>
+      <!-- OVERHEAD: меню как в Unity -->
+      <Menu DockPanel.Dock="Top" Classes="unity-menu">
+        <MenuItem Header="_File">
+          <MenuItem x:Name="MenuSaveProject" Header="Save Project"/>
+          <MenuItem x:Name="MenuLoadProject" Header="Load Project"/>
+          <Separator/>
+          <MenuItem x:Name="MenuSaveNosdk" Header="Save .nosdk"/>
+          <Separator/>
+          <MenuItem x:Name="MenuExit" Header="Exit"/>
+        </MenuItem>
+        <MenuItem Header="_Edit">
+          <MenuItem x:Name="MenuToggleTools" Header="REPL / Tools" ToggleType="CheckBox"/>
+        </MenuItem>
+        <MenuItem Header="_Assets">
+          <MenuItem x:Name="MenuPreviewHud" Header="Preview HUD"/>
+          <MenuItem x:Name="MenuPreviewLogic" Header="Preview Logic"/>
+          <MenuItem x:Name="MenuBuildHudMod" Header="Build HUD Mod"/>
+          <MenuItem x:Name="MenuBuildLogicMod" Header="Build Logic Mod"/>
+          <CheckBox x:Name="OverlayEnabledCheck" Content="Overlay"/>
+        </MenuItem>
+        <MenuItem Header="_GameObject">
+          <MenuItem x:Name="MenuFocusScene" Header="Focus Hierarchy"/>
+          <MenuItem x:Name="MenuRefreshScene" Header="Refresh Scene"/>
+        </MenuItem>
+        <MenuItem Header="_Publish">
+          <MenuItem x:Name="MenuConnect" Header="Connect"/>
+          <MenuItem x:Name="MenuDisconnect" Header="Disconnect"/>
+          <MenuItem x:Name="MenuPing" Header="Ping"/>
+          <MenuItem x:Name="MenuSaveSettings" Header="Save Settings"/>
+        </MenuItem>
+        <MenuItem Header="_Window">
+          <MenuItem x:Name="MenuFocusConstructor" Header="Scene / Constructor"/>
+          <MenuItem x:Name="MenuFocusVisualHud" Header="Game (Visual HUD)"/>
+          <MenuItem x:Name="MenuFocusProject" Header="Project"/>
+          <MenuItem x:Name="MenuShowConsole" Header="Console" ToggleType="CheckBox" IsChecked="True"/>
+          <MenuItem x:Name="MenuShowPreview" Header="Preview panel" ToggleType="CheckBox"/>
+          <MenuItem x:Name="MenuOpenSettings" Header="Settings…"/>
+        </MenuItem>
+        <MenuItem Header="_Help">
+          <MenuItem Header="Nuclear Studio" IsEnabled="False"/>
+        </MenuItem>
+      </Menu>
+
+      <!-- Toolbar: transport + layout (как Unity) -->
+      <Border DockPanel.Dock="Top" Classes="unity-toolbar">
+        <Grid ColumnDefinitions="Auto,*,Auto,Auto">
+          <StackPanel Orientation="Horizontal" Spacing="4" Margin="6,0">
+            <Button x:Name="ToolbarPreviewLogic" Classes="compact icon-btn" Content="▶" Width="28"
+                    ToolTip.Tip="Preview Logic"/>
+            <Button x:Name="ToolbarPreviewHud" Classes="compact icon-btn" Content="▶|" Width="32"
+                    ToolTip.Tip="Preview HUD"/>
+            <Button x:Name="ToolbarPause" Classes="compact icon-btn" Content="⏸" Width="28" IsEnabled="False"
+                    ToolTip.Tip="Pause (coming soon)"/>
+          </StackPanel>
+
+          <TextBlock Grid.Column="1" x:Name="StatusBarText" VerticalAlignment="Center" HorizontalAlignment="Center"
+                     Opacity="0.75" FontSize="11" TextTrimming="CharacterEllipsis"/>
+
+          <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="6" VerticalAlignment="Center" Margin="0,0,8,0">
+            <Border x:Name="ConnectionIndicator" Width="8" Height="8" CornerRadius="4" Background="#CC3333"/>
+            <TextBlock x:Name="ConnectionStatusText" Text="Offline" FontSize="10" Opacity="0.85"/>
+          </StackPanel>
+
+          <ComboBox Grid.Column="3" x:Name="LayoutCombo" Width="120" SelectedIndex="0" Margin="4,2"
+                    Classes="unity-layout-combo">
+            <ComboBoxItem>Layout</ComboBoxItem>
+            <ComboBoxItem>Default</ComboBoxItem>
+            <ComboBoxItem>Wide Inspector</ComboBoxItem>
+          </ComboBox>
+        </Grid>
+      </Border>
+
+      <!-- Основная рабочая область -->
+      <Grid x:Name="WorkspaceGrid" Margin="0" ColumnDefinitions="0.22*,6,*,6,0.24*" RowDefinitions="5*,6,2*">
+
+        <!-- Hierarchy: сцена, HUD, код игры, блоки -->
+        <Border Grid.Column="0" Grid.RowSpan="3" Classes="unity-dock">
+          <views:HierarchyPanel x:Name="Hierarchy"/>
+        </Border>
+
+        <!-- Scene / Game / Protocol: TabControl только для заголовков; контент — соседняя Panel (VP44/45) -->
+        <Border Grid.Column="2" Grid.Row="0" Classes="unity-dock" ClipToBounds="True" VerticalAlignment="Stretch">
+          <DockPanel LastChildFill="True">
+            <TabControl x:Name="CenterEditorTabs" DockPanel.Dock="Top" Classes="unity-tabs compact-tabs"
+                        Padding="2,0,2,0">
+              <TabItem Header="Scene"><Panel Height="0"/></TabItem>
+              <TabItem Header="Game"><Panel Height="0"/></TabItem>
+              <TabItem Header="Protocol"><Panel Height="0"/></TabItem>
+            </TabControl>
+            <Panel>
+              <views:ConstructorWorkspacePanel x:Name="ConstructorWorkspace"
+                                               HorizontalAlignment="Stretch"
+                                               VerticalAlignment="Stretch"/>
+              <views:VisualHudEditorPanel x:Name="VisualHudEditor" IsVisible="False" Margin="2"
+                                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+              <views:ProtocolLivePanel x:Name="ProtocolLive" IsVisible="False"
+                                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Panel>
+          </DockPanel>
+        </Border>
+
+        <!-- Project / Console / Preview (центр низ) -->
+        <Border Grid.Column="2" Grid.Row="2" Classes="unity-dock" x:Name="BottomDock"
+                ClipToBounds="True" VerticalAlignment="Stretch" MinHeight="120">
+          <TabControl x:Name="BottomDockTabs" Classes="unity-tabs" VerticalAlignment="Stretch">
+            <TabItem Header="Project" x:Name="ProjectDockTab">
+              <views:ProjectWindowPanel x:Name="ProjectWindow"/>
+            </TabItem>
+            <TabItem Header="Console" x:Name="ConsoleDockTab">
+              <Grid RowDefinitions="Auto,*" Margin="2">
+                <Grid ColumnDefinitions="*,Auto">
+                  <TextBlock x:Name="LogPathText" Opacity="0.6" FontSize="10" VerticalAlignment="Center"/>
+                  <Button x:Name="ClearLogButton" Grid.Column="1" Classes="compact" Content="Clear"/>
+                </Grid>
+                <TextBox x:Name="LogBox" Grid.Row="1" AcceptsReturn="True" IsReadOnly="True"
+                         FontFamily="Consolas,Courier New" FontSize="10" Classes="unity-console"/>
+              </Grid>
+            </TabItem>
+            <TabItem Header="Preview" x:Name="PreviewDockTab">
+              <Grid RowDefinitions="Auto,*" Margin="2">
+                <TextBlock x:Name="BottomPreviewTitle" Text="Preview" Opacity="0.75" FontSize="10"/>
+                <TextBox x:Name="BottomPreviewBox" Grid.Row="1" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap"
+                         FontFamily="Consolas,Courier New" FontSize="10" Classes="unity-console"/>
+              </Grid>
+            </TabItem>
+            <TabItem Header="REPL" x:Name="ReplDockTab" IsVisible="False">
+              <Grid RowDefinitions="Auto,*,Auto,Auto" Margin="4">
+                <CheckBox x:Name="ReplDisclaimerCheck" Content="REPL — I accept risks"/>
+                <TextBox x:Name="ReplInput" Grid.Row="1" AcceptsReturn="True" FontFamily="Consolas,Courier New" MinHeight="60"
+                         Text="current_aircraft"/>
+                <StackPanel Grid.Row="2" Spacing="2" Margin="0,4,0,0">
+                  <TextBlock Text="Technical preview (sent to game)" FontSize="9" Opacity="0.7"/>
+                  <TextBox x:Name="ReplTechnicalPreview" AcceptsReturn="True" IsReadOnly="True" MinHeight="40"
+                           FontFamily="Consolas,Courier New" FontSize="10" Classes="unity-console"/>
+                </StackPanel>
+                <StackPanel Grid.Row="3" Orientation="Horizontal" Spacing="8" Margin="0,4,0,0">
+                  <Button x:Name="RunReplButton" Classes="compact" Content="Run"/>
+                  <TextBlock x:Name="ReplResultText" VerticalAlignment="Center"/>
+                </StackPanel>
+              </Grid>
+            </TabItem>
+          </TabControl>
+        </Border>
+
+        <!-- Inspector + Services (компактно) -->
+        <Grid Grid.Column="4" Grid.RowSpan="3" RowDefinitions="*,4,Auto">
+          <Border Grid.Row="0" Classes="unity-dock" MinHeight="120">
+          <Grid RowDefinitions="Auto,*">
+            <Border Classes="unity-dock-tab">
+              <TextBlock Text="Inspector" Classes="unity-dock-title-compact"/>
+            </Border>
+            <ScrollViewer Grid.Row="1" Margin="2,0,2,2" Classes="unity-inspector-scroll">
+              <StackPanel Spacing="3" Classes="unity-inspector">
+                <StackPanel x:Name="InspectorFieldsPanel" Spacing="3">
+                  <TextBlock x:Name="InspectorTargetText" Text="Nothing selected" Opacity="0.8" TextWrapping="Wrap"
+                             FontSize="10" FontWeight="SemiBold"/>
+                  <TextBlock x:Name="InspectorPathText" TextWrapping="Wrap" Opacity="0.55" FontSize="9" IsVisible="False"/>
+                  <TextBlock x:Name="InspectorLogicSummaryText" TextWrapping="Wrap" Opacity="0.6" FontSize="9" IsVisible="False"/>
+                  <StackPanel x:Name="LogicParamsPanel" Spacing="2" IsVisible="False"/>
+                  <TextBox x:Name="InspectorTextBox" Classes="inspector-field" PlaceholderText="Text" IsVisible="False"/>
+                  <TextBox x:Name="InspectorColorBox" Classes="inspector-field" PlaceholderText="#FFFFFF" IsVisible="False"/>
+                  <TextBox x:Name="InspectorFontSizeBox" Classes="inspector-field" PlaceholderText="Size" IsVisible="False"/>
+                  <Grid x:Name="InspectorPositionPanel" ColumnDefinitions="*,*" ColumnSpacing="3" IsVisible="False">
+                    <TextBox x:Name="InspectorXBox" Grid.Column="0" Classes="inspector-field" PlaceholderText="X"/>
+                    <TextBox x:Name="InspectorYBox" Grid.Column="1" Classes="inspector-field" PlaceholderText="Y"/>
+                  </Grid>
+                  <Grid x:Name="InspectorLinePanel" ColumnDefinitions="*,*" ColumnSpacing="3" IsVisible="False">
+                    <TextBox x:Name="InspectorX2Box" Grid.Column="0" Classes="inspector-field" PlaceholderText="X2"/>
+                    <TextBox x:Name="InspectorY2Box" Grid.Column="1" Classes="inspector-field" PlaceholderText="Y2"/>
+                  </Grid>
+                  <TextBox x:Name="InspectorRadiusBox" Classes="inspector-field" PlaceholderText="R" IsVisible="False"/>
+                  <CheckBox x:Name="InspectorVisibleCheck" Content="Visible" FontSize="10" IsVisible="False" Padding="0"/>
+                  <CheckBox x:Name="InspectorAutoApplyCheck" Content="Auto-apply" FontSize="10" IsChecked="True" Padding="0"/>
+                  <Button x:Name="InspectorApplyButton" Classes="compact" Content="Apply" HorizontalAlignment="Stretch"/>
+                  <TextBox x:Name="InspectorReadOnlyBox" AcceptsReturn="True" IsReadOnly="True" TextWrapping="Wrap"
+                           MinHeight="48" FontSize="9" Classes="unity-console" IsVisible="False"/>
+                </StackPanel>
+              </StackPanel>
+            </ScrollViewer>
+          </Grid>
+        </Border>
+
+          <Border Grid.Row="2" Classes="unity-dock" MinHeight="72" MaxHeight="120">
+            <Grid RowDefinitions="Auto,*">
+              <Border Classes="unity-dock-tab">
+                <TextBlock Text="Services" Classes="unity-dock-title-compact"/>
+              </Border>
+              <StackPanel Grid.Row="1" Margin="4,2" Spacing="2">
+                <TextBox x:Name="GamePathBox" Classes="inspector-field" PlaceholderText="NO path…" FontSize="9"/>
+                <TextBlock x:Name="ServicesHintText" Text="Bridge · ModKit" Opacity="0.55" FontSize="9"/>
+                <TextBlock x:Name="ServicesVersionText" Opacity="0.45" FontSize="8"/>
+              </StackPanel>
+            </Grid>
+          </Border>
+
+          <GridSplitter Grid.Row="1" Height="6" Classes="unity-splitter" ResizeDirection="Rows" ZIndex="50"/>
+        </Grid>
+
+        <!-- GridSplitter: ZIndex=50 — та же схема, что ConstructorSplit в LogicConstructorPanel -->
+        <GridSplitter Grid.Column="1" Grid.RowSpan="3" Width="6" Classes="unity-splitter"
+                      ResizeDirection="Columns" ZIndex="50"/>
+        <GridSplitter Grid.Column="3" Grid.RowSpan="3" Width="6" Classes="unity-splitter"
+                      ResizeDirection="Columns" ZIndex="50"/>
+        <GridSplitter x:Name="WorkspaceRowSplitter" Grid.Row="1" Grid.Column="2" Height="6"
+                      Classes="unity-splitter" ResizeDirection="Rows" ZIndex="50"
+                      DragCompleted="OnWorkspaceRowSplitDragCompleted"/>
+      </Grid>
+    </DockPanel>
+
+    <Border x:Name="ModBuildOverlay" IsVisible="False" Background="#CC000000" ZIndex="100"
+            HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+      <Border Classes="panel" Width="520" MaxHeight="480" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <views:ModBuilderPanel x:Name="ModBuilder" Margin="8"/>
+      </Border>
+    </Border>
+  </Grid>
+</Window>

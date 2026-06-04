@@ -1,0 +1,20 @@
+{
+  "types": {
+    "Aircraft": { "title": "Aircraft", "tag": "AVIATION", "hint": "Player or AI aircraft unit." },
+    "Unit": { "title": "Unit", "tag": "AVIATION", "hint": "Base combat unit type." },
+    "CombatHUD": { "title": "Combat HUD", "tag": "HUD", "hint": "Weapons and targeting HUD." },
+    "FlightHud": { "title": "Flight HUD", "tag": "HUD", "hint": "Flight instruments overlay." },
+    "WeaponStation": { "title": "Weapon station", "tag": "WEAPONS", "hint": "Hardpoint / pylon state." }
+  },
+  "members": {
+    "Aircraft.speed": { "title": "Airspeed", "hint": "Current speed (m/s)." },
+    "Aircraft.fuelLevel": { "title": "Fuel level", "hint": "Normalized fuel 0–1." },
+    "Aircraft.gForce": { "title": "G-load", "hint": "Current g-force." },
+    "Aircraft.gearDeployed": { "title": "Gear deployed", "hint": "Landing gear state." },
+    "Unit.radarAlt": { "title": "Radar altitude", "hint": "AGL from radar altimeter." },
+    "GameplayUI.player": {
+      "title": "Player reference",
+      "hint": "Link to Player for HUD/UI binding (pilot stats, kill feed, labels)."
+    }
+  }
+}

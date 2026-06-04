@@ -1,0 +1,15 @@
+Nuclear Option SDK — third-party notices
+=========================================
+
+ICSharpCode.Decompiler (ILSpy decompiler engine)
+-------------------------------------------------
+Copyright (c) 2011-2024 AlphaSierraPapa, Andreas Kuperschmidt, Christian Baumann,
+Markus Palwald, Daniel Grunwald, Matt Ward, and contributors.
+
+Licensed under the MIT License.
+https://github.com/icsharpcode/ILSpy/blob/master/LICENSE
+
+Mono.Cecil
+----------
+Copyright (c) Jb Evain, Copyright (c) Ubisoft
+MIT License — https://github.com/jbevain/cecil/blob/master/LICENSE.txt

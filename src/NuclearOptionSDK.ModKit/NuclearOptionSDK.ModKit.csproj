@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>NuclearOptionSDK.ModKit</RootNamespace>
+    <AssemblyName>NuclearOptionSDK.ModKit</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NuclearOptionSDK.Protocol\NuclearOptionSDK.Protocol.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Runtime\GameBindingRuntime.cs" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>

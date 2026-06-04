@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="using:NuclearOptionSDK.Studio.Views"
+             x:Class="NuclearOptionSDK.Studio.Views.AudioConstructorPanel">
+  <Grid RowDefinitions="Auto,Auto,*,Auto" ColumnDefinitions="*,220" Margin="4">
+    <Grid Grid.Row="0" Grid.ColumnSpan="2" ColumnDefinitions="Auto,*" Margin="0,0,0,4">
+      <Menu Grid.Column="0">
+        <MenuItem Header="Audio">
+          <MenuItem x:Name="SaveMenuItem" Header="Save graph"/>
+          <MenuItem x:Name="LoadMenuItem" Header="Load graph"/>
+          <MenuItem x:Name="PreviewMenuItem" Header="Preview in game"/>
+        </MenuItem>
+      </Menu>
+      <TextBlock Grid.Column="1" Classes="panel-header" Text="Audio Constructor" VerticalAlignment="Center" Margin="8,0"/>
+    </Grid>
+    <views:LogicNodeCanvas x:Name="Canvas" Grid.Row="2" Grid.Column="0" Margin="0,0,4,0"/>
+    <Grid Grid.Row="2" Grid.Column="1" RowDefinitions="Auto,Auto,*,Auto">
+      <TextBlock Grid.Row="0" Classes="panel-header" Text="Sound library"/>
+      <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="4" Margin="0,4">
+        <Button x:Name="PlayButton" Classes="compact" Content="▶"/>
+        <Button x:Name="LoadButton" Classes="compact" Content="Load"/>
+        <Button x:Name="DeleteButton" Classes="compact" Content="Del"/>
+        <Button x:Name="RestoreButton" Classes="compact" Content="Restore"/>
+      </StackPanel>
+      <ListBox x:Name="ClipList" Grid.Row="2" FontSize="10"/>
+      <TextBlock x:Name="AudioStatusText" Grid.Row="3" Opacity="0.7" FontSize="10" TextWrapping="Wrap" Margin="0,4,0,0"/>
+    </Grid>
+    <TextBlock x:Name="TitleText" Grid.Row="3" Grid.ColumnSpan="2" Opacity="0.6" FontSize="10" Margin="0,4,0,0"/>
+  </Grid>
+</UserControl>

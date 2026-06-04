@@ -1,0 +1,15 @@
+{
+  "id": "fuel-status",
+  "title": "Fuel status",
+  "graph": {
+    "nodes": [
+      { "id": "f1", "kind": "source", "typeId": "Telemetry.Fuel", "x": 40, "y": 80 },
+      { "id": "f2", "kind": "check", "typeId": "Gate.FuelLow", "x": 340, "y": 80, "parameters": { "threshold": "0.15" } },
+      { "id": "f3", "kind": "output", "typeId": "Action.SetOverlayVisible", "x": 640, "y": 80, "parameters": { "labelId": "fuel-warn", "visible": "true" } }
+    ],
+    "edges": [
+      { "fromNode": "f1", "toNode": "f2" },
+      { "fromNode": "f2", "toNode": "f3" }
+    ]
+  }
+}

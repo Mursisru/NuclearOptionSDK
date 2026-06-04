@@ -1,0 +1,17 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="NuclearOptionSDK.Studio.Views.SettingsWindow"
+        Title="Nuclear Studio Settings"
+        Width="480" Height="220"
+        WindowStartupLocation="CenterOwner">
+  <StackPanel Margin="16" Spacing="10">
+    <TextBlock Text="Nuclear Option install folder" Opacity="0.8"/>
+    <TextBox x:Name="GamePathBox" PlaceholderText="C:\Program Files (x86)\Steam\steamapps\common\Nuclear Option"/>
+    <CheckBox x:Name="ReplDisclaimerCheck" Content="REPL disclaimer accepted"/>
+    <TextBlock x:Name="ErrorText" Foreground="#e66" TextWrapping="Wrap" IsVisible="False"/>
+    <StackPanel Orientation="Horizontal" Spacing="8" HorizontalAlignment="Right">
+      <Button x:Name="CancelButton" Content="Cancel"/>
+      <Button x:Name="SaveButton" Content="Save" Classes="accent"/>
+    </StackPanel>
+  </StackPanel>
+</Window>

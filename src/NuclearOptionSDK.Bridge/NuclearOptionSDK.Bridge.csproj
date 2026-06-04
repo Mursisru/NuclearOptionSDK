@@ -1,0 +1,84 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>NuclearOptionSDK.Bridge</RootNamespace>
+    <AssemblyName>NuclearOptionSDK.Bridge_Engine</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DeployBridge Condition="'$(DeployBridge)'==''">true</DeployBridge>
+    <BridgeDeployDir>$(NuclearOptionRoot)\BepInEx\plugins\NuclearOptionSDK\</BridgeDeployDir>
+  </PropertyGroup>
+  <Target Name="DeployBridge" AfterTargets="Build" Condition="'$(Configuration)'=='Release' AND '$(DeployBridge)'=='true' AND Exists('$(NuclearOptionRoot)\BepInEx\plugins')">
+    <ItemGroup>
+      <BridgeDeployFiles Include="$(TargetDir)*.dll" />
+    </ItemGroup>
+    <MakeDir Directories="$(BridgeDeployDir)" />
+    <Copy SourceFiles="@(BridgeDeployFiles)" DestinationFolder="$(BridgeDeployDir)" SkipUnchangedFiles="false" />
+    <Delete Files="$(NuclearOptionRoot)\BepInEx\plugins\NuclearOptionSDK.Bridge_Engine.dll"
+            Condition="Exists('$(NuclearOptionRoot)\BepInEx\plugins\NuclearOptionSDK.Bridge_Engine.dll')" />
+    <Message Importance="high" Text="Bridge deployed to $(BridgeDeployDir) ($(BridgeDeployFiles->Count()) DLLs)" />
+  </Target>
+  <ItemGroup>
+    <ProjectReference Include="..\NuclearOptionSDK.Protocol\NuclearOptionSDK.Protocol.csproj" />
+    <ProjectReference Include="..\NuclearOptionSDK.ModKit\NuclearOptionSDK.ModKit.csproj" />
+    <ProjectReference Include="..\NuclearOptionSDK.LogicCore\NuclearOptionSDK.LogicCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Fleck" Version="1.2.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.11.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>$(NuclearOptionRoot)\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Mirage">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\Mirage.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(NuclearOptionRoot)\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\UnityEngine.AudioModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(NuclearOptionRoot)\NuclearOption_Data\Managed\Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

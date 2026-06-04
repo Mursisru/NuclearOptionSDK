@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="using:NuclearOptionSDK.Studio.Views"
+             x:Class="NuclearOptionSDK.Studio.Views.ModBuilderPanel">
+  <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="4">
+    <StackPanel Grid.Row="0" Spacing="4">
+      <TextBlock Classes="panel-header" Text="Mod Builder"/>
+      <TextBox x:Name="ModNameBox" PlaceholderText="Mod name"/>
+      <TextBox x:Name="ModGuidBox" PlaceholderText="Plugin GUID"/>
+      <StackPanel Orientation="Horizontal" Spacing="4">
+        <TextBox x:Name="HarmonyTypeBox" PlaceholderText="Target type" Width="140"/>
+        <TextBox x:Name="HarmonyMethodBox" PlaceholderText="Method" Width="120"/>
+        <ComboBox x:Name="HarmonyKindBox" SelectedIndex="0" Width="80">
+          <ComboBoxItem Content="Prefix"/>
+          <ComboBoxItem Content="Postfix"/>
+        </ComboBox>
+      </StackPanel>
+    </StackPanel>
+    <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="4" Margin="0,4">
+      <Button x:Name="GenerateHarmonyButton" Classes="compact" Content="Harmony"/>
+      <Button x:Name="BuildModButton" Classes="compact" Content="Build Mod"/>
+    </StackPanel>
+    <TextBox x:Name="HarmonySourceBox" Grid.Row="2" AcceptsReturn="True" FontFamily="Consolas" MinHeight="60"/>
+    <TextBox x:Name="ModBuildLogBox" Grid.Row="3" AcceptsReturn="True" IsReadOnly="True" FontFamily="Consolas" MinHeight="40"/>
+  </Grid>
+</UserControl>

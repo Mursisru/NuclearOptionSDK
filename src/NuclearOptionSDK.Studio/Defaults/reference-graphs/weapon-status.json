@@ -1,0 +1,13 @@
+{
+  "id": "weapon-status",
+  "title": "Weapon status",
+  "graph": {
+    "nodes": [
+      { "id": "w1", "kind": "gate", "typeId": "Gate.WeaponSelected", "x": 40, "y": 80 },
+      { "id": "w2", "kind": "output", "typeId": "Action.SetHudActive", "x": 340, "y": 80, "parameters": { "active": "true" } }
+    ],
+    "edges": [
+      { "fromNode": "w1", "toNode": "w2" }
+    ]
+  }
+}

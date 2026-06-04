@@ -1,0 +1,7 @@
+{
+  "aliases": {
+    "current_aircraft": "Aircraft",
+    "player_aircraft": "Aircraft",
+    "current_unit": "Unit"
+  }
+}

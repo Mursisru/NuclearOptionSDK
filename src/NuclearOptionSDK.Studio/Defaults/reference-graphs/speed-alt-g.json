@@ -1,0 +1,25 @@
+{
+  "id": "speed-alt-g",
+  "title": "Speed / Altitude / G",
+  "graph": {
+    "nodes": [
+      { "id": "s1", "kind": "source", "typeId": "Telemetry.Speed", "x": 40, "y": 60 },
+      { "id": "s2", "kind": "source", "typeId": "Telemetry.Altitude", "x": 40, "y": 160 },
+      { "id": "s3", "kind": "source", "typeId": "Telemetry.G", "x": 40, "y": 260 },
+      { "id": "c1", "kind": "check", "typeId": "Compare.GreaterThan", "x": 340, "y": 60, "parameters": { "threshold": "50" } },
+      { "id": "c2", "kind": "check", "typeId": "Compare.LessThan", "x": 340, "y": 160, "parameters": { "threshold": "100" } },
+      { "id": "c3", "kind": "check", "typeId": "Compare.GreaterThan", "x": 340, "y": 260, "parameters": { "threshold": "5" } },
+      { "id": "m1", "kind": "merge", "typeId": "Logic.MergeAll", "x": 640, "y": 160 },
+      { "id": "o1", "kind": "output", "typeId": "Action.SetOverlayVisible", "x": 940, "y": 160, "parameters": { "labelId": "warn-label", "visible": "true" } }
+    ],
+    "edges": [
+      { "fromNode": "s1", "toNode": "c1" },
+      { "fromNode": "s2", "toNode": "c2" },
+      { "fromNode": "s3", "toNode": "c3" },
+      { "fromNode": "c1", "toNode": "m1" },
+      { "fromNode": "c2", "toNode": "m1" },
+      { "fromNode": "c3", "toNode": "m1" },
+      { "fromNode": "m1", "toNode": "o1" }
+    ]
+  }
+}

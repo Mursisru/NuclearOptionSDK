@@ -1,0 +1,11 @@
+bin/
+obj/
+.vs/
+*.user
+Directory.Build.user.props
+release/
+
+# Dev screenshots / smoke artifacts
+.capture-frames/
+capture-frames/
+smoke-log.txt

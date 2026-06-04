@@ -1,0 +1,7 @@
+{
+  "hideSystemNoise": true,
+  "hideUnityLifecycle": true,
+  "hideCompilerGenerated": true,
+  "typePriorityBoost": ["Aircraft", "Unit", "WeaponStation", "CombatHUD", "FlightHud", "AoADisplay"],
+  "lifecycleMethodNames": ["Update", "LateUpdate", "FixedUpdate", "Awake", "Start", "OnEnable", "OnDisable", "OnDestroy"]
+}

@@ -1,0 +1,23 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="NuclearOptionSDK.Studio.Views.ProjectWindowPanel">
+  <Grid x:Name="ProjectSplitRoot" ColumnDefinitions="0.32*,6,*" MinHeight="80">
+    <Grid Grid.Column="0" RowDefinitions="Auto,*" MinWidth="100">
+      <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="2" Margin="2,2,2,0">
+        <Button x:Name="RefreshProjectTreeButton" Classes="compact icon-btn" Content="↻" Width="22" Height="20"
+                ToolTip.Tip="Refresh tree"/>
+        <TextBox x:Name="ProjectSearchBox" Classes="hierarchy-field" PlaceholderText="Search…" FontSize="10"
+                 MinHeight="20" HorizontalAlignment="Stretch"/>
+      </StackPanel>
+      <TreeView x:Name="ProjectTree" Grid.Row="1" Classes="compact-tree hierarchy-tree" Margin="1,2,1,1"/>
+    </Grid>
+
+    <Grid Grid.Column="2" RowDefinitions="Auto,*" MinWidth="120">
+      <TextBlock x:Name="ProjectPathLabel" Grid.Row="0" Opacity="0.65" FontSize="9" Margin="4,2" TextWrapping="Wrap"
+                 MaxHeight="28" TextTrimming="CharacterEllipsis"/>
+      <ListBox x:Name="AssetList" Grid.Row="1" Classes="unity-asset-list" FontSize="10" Margin="2,0,2,2"/>
+    </Grid>
+
+    <GridSplitter Grid.Column="1" Width="6" Classes="unity-splitter" ResizeDirection="Columns" ZIndex="50"/>
+  </Grid>
+</UserControl>

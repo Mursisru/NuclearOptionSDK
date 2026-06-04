@@ -1,0 +1,61 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+    <RootNamespace>NuclearOptionSDK.Studio</RootNamespace>
+    <AssemblyName>NuclearOptionSDK.Studio</AssemblyName>
+    <!-- UI interaction trace: Debug + smoke (-p:StudioUiTrace=true). Release publish MUST NOT set StudioUiTrace. -->
+    <StudioUiTrace Condition="'$(StudioUiTrace)' == ''">false</StudioUiTrace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DefineConstants>$(DefineConstants);STUDIO_UI_TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(StudioUiTrace)' == 'true'">
+    <DefineConstants>$(DefineConstants);STUDIO_UI_TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="windows" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="12.0.4" />
+    <PackageReference Include="Avalonia.Desktop" Version="12.0.4" />
+    <PackageReference Include="Avalonia.Headless" Version="12.0.4" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="12.0.4" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="12.0.4" />
+    <PackageReference Include="Mono.Cecil" Version="0.11.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Windows.Extensions" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Styles\**"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NuclearOptionSDK.Decompiler\NuclearOptionSDK.Decompiler.csproj" />
+    <ProjectReference Include="..\NuclearOptionSDK.Protocol\NuclearOptionSDK.Protocol.csproj" />
+    <ProjectReference Include="..\NuclearOptionSDK.ModKit\NuclearOptionSDK.ModKit.csproj" />
+    <ProjectReference Include="..\NuclearOptionSDK.LogicCore\NuclearOptionSDK.LogicCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="locales\en\logic.json" />
+    <EmbeddedResource Include="locales\en\bindings.json" />
+    <EmbeddedResource Include="Defaults\locales\en\api-symbols.json" LogicalName="locales.en.api-symbols.json" />
+    <None Include="Defaults\reference-graphs\**\*" CopyToOutputDirectory="PreserveNewest" Link="Defaults\reference-graphs\%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Include="Defaults\api-surface-rules.json" CopyToOutputDirectory="PreserveNewest" Link="Defaults\api-surface-rules.json" />
+    <None Include="Defaults\repl-aliases.json" CopyToOutputDirectory="PreserveNewest" Link="Defaults\repl-aliases.json" />
+    <None Include="Defaults\locales\en\api-symbols.json" CopyToOutputDirectory="PreserveNewest" Link="Defaults\locales\en\api-symbols.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Services\NoGameParameterCatalog.Data.cs" />
+  </ItemGroup>
+</Project>

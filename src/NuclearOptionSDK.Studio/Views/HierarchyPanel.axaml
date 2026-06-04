@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="using:NuclearOptionSDK.Studio.Views"
+             x:Class="NuclearOptionSDK.Studio.Views.HierarchyPanel">
+  <Grid RowDefinitions="Auto,*">
+    <Border Grid.Row="0" Classes="unity-dock-tab">
+      <TextBlock Text="Hierarchy" Classes="unity-dock-title-compact"/>
+    </Border>
+
+    <TabControl x:Name="HierarchyTabs" Grid.Row="1" Classes="unity-tabs compact-tabs hierarchy-tabs">
+      <TabItem Header="Scene">
+        <Grid RowDefinitions="Auto,*" Margin="0">
+          <StackPanel Orientation="Horizontal" Spacing="2" Margin="2,2,2,0">
+            <Button x:Name="RefreshSceneButtonControl" Classes="compact icon-btn" Content="↻" Width="22" Height="20"
+                    ToolTip.Tip="Refresh scene"/>
+            <TextBox x:Name="SceneSearchBoxControl" Classes="hierarchy-field" PlaceholderText="Search…" FontSize="10"
+                     MinHeight="20" HorizontalAlignment="Stretch"/>
+          </StackPanel>
+          <TreeView x:Name="SceneTreeControl" Grid.Row="1" Classes="compact-tree hierarchy-tree" Margin="1,2,1,1"/>
+        </Grid>
+      </TabItem>
+
+      <TabItem Header="HUD">
+        <Grid RowDefinitions="Auto,*" Margin="0">
+          <Button x:Name="RefreshHudButtonControl" Grid.Row="0" Classes="compact icon-btn" Content="↻ HUD" Margin="2,2"
+                  HorizontalAlignment="Left" MinHeight="20" FontSize="10" Padding="4,1"/>
+          <TreeView x:Name="HudTreeControl" Grid.Row="1" Classes="compact-tree hierarchy-tree" Margin="1,0,1,1"/>
+        </Grid>
+      </TabItem>
+
+      <TabItem Header="Code">
+        <views:GameCodePanel x:Name="GameCodeEditor" Classes="hierarchy-embedded"/>
+      </TabItem>
+
+      <TabItem Header="Blocks">
+        <views:LogicPalettePanel x:Name="LogicPaletteEditor" Classes="hierarchy-embedded"/>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</UserControl>

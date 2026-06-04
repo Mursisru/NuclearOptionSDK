@@ -1,0 +1,24 @@
+{
+  "id": "aoa-display",
+  "title": "AoADisplay (in-game HUD)",
+  "gameVersionMin": "1.0",
+  "graph": {
+    "nodes": [
+      { "id": "n1", "kind": "source", "typeId": "Member.Bind", "x": 40, "y": 80, "parameters": { "bindingId": "Cockpit.velocity", "hint": "cockpit.rb.velocity" } },
+      { "id": "n2", "kind": "check", "typeId": "Compare.GreaterThan", "x": 340, "y": 40, "parameters": { "threshold": "0", "hint": "InverseTransformDirection" } },
+      { "id": "n3", "kind": "source", "typeId": "Telemetry.AoA", "x": 640, "y": 80, "parameters": { "hint": "Atan2(y,z)*-57.29578" } },
+      { "id": "n4", "kind": "check", "typeId": "Gate.OnlyWhenInFlight", "x": 940, "y": 80, "parameters": { "threshold": "10" } },
+      { "id": "n5", "kind": "check", "typeId": "Compare.GreaterThan", "x": 1240, "y": 40, "parameters": { "threshold": "15", "hint": "hornThreshold" } },
+      { "id": "n6", "kind": "output", "typeId": "Action.SetOverlayColor", "x": 1540, "y": 80, "parameters": { "labelId": "aoa-label", "colorHtml": "#FF4400" } },
+      { "id": "n7", "kind": "output", "typeId": "Action.PlaySound", "x": 1540, "y": 180, "parameters": { "clipName": "stallHorn" } }
+    ],
+    "edges": [
+      { "fromNode": "n1", "toNode": "n2" },
+      { "fromNode": "n2", "toNode": "n3" },
+      { "fromNode": "n3", "toNode": "n4" },
+      { "fromNode": "n4", "toNode": "n5" },
+      { "fromNode": "n5", "toNode": "n6" },
+      { "fromNode": "n5", "toNode": "n7" }
+    ]
+  }
+}

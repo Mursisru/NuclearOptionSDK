@@ -1,0 +1,9 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="NuclearOptionSDK.Studio.Views.LogicPalettePanel">
+  <Grid RowDefinitions="Auto,Auto,*" Margin="1">
+    <ComboBox x:Name="CategoryBox" Grid.Row="0" Margin="2,1" HorizontalAlignment="Stretch" FontSize="10" MinHeight="20"/>
+    <TextBox x:Name="FilterBox" Grid.Row="1" PlaceholderText="Blocks…" Margin="2,1" FontSize="10" MinHeight="20" Classes="hierarchy-field"/>
+    <ListBox x:Name="PaletteList" Grid.Row="2" Margin="1,0,1,1" FontSize="10" Classes="unity-asset-list"/>
+  </Grid>
+</UserControl>

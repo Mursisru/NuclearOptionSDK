@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NuclearOptionSDK.Bridge/NuclearOptionSDK.Bridge.csproj" />
+    <Project Path="src/NuclearOptionSDK.LogicCore/NuclearOptionSDK.LogicCore.csproj" />
+    <Project Path="src/NuclearOptionSDK.ModKit/NuclearOptionSDK.ModKit.csproj" />
+    <Project Path="src/NuclearOptionSDK.Decompiler/NuclearOptionSDK.Decompiler.csproj" />
+    <Project Path="src/NuclearOptionSDK.Protocol/NuclearOptionSDK.Protocol.csproj" />
+    <Project Path="src/NuclearOptionSDK.Studio/NuclearOptionSDK.Studio.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NuclearOptionSDK.Decompiler.Tests/NuclearOptionSDK.Decompiler.Tests.csproj" />
+    <Project Path="tests/NuclearOptionSDK.LogicCore.Tests/NuclearOptionSDK.LogicCore.Tests.csproj" />
+    <Project Path="tests/NuclearOptionSDK.Studio.Tests/NuclearOptionSDK.Studio.Tests.csproj" />
+  </Folder>
+</Solution>

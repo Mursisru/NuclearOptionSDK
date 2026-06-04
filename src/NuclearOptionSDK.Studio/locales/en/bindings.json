@@ -1,0 +1,10 @@
+{
+  "bindings": [
+    { "id": "Aircraft.speed", "title": "Aircraft: speed", "hint": "Aircraft.speed (m/s)", "path": "Aircraft.speed" },
+    { "id": "Aircraft.radarAlt", "title": "Aircraft: radar altitude", "hint": "Aircraft.radarAlt", "path": "Aircraft.radarAlt" },
+    { "id": "Aircraft.gForce", "title": "Aircraft: G-force", "hint": "Aircraft.gForce", "path": "Aircraft.gForce" },
+    { "id": "Aircraft.airborne", "title": "Aircraft: airborne", "hint": "Aircraft.airborne", "path": "Aircraft.airborne" },
+    { "id": "Cockpit.velocity.y", "title": "Cockpit: velocity Y", "hint": "cockpit.rb.velocity local Y", "path": "Aircraft.cockpit.rb.velocity.y" },
+    { "id": "Cockpit.velocity.z", "title": "Cockpit: velocity Z", "hint": "cockpit.rb.velocity local Z", "path": "Aircraft.cockpit.rb.velocity.z" }
+  ]
+}

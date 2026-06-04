@@ -1,0 +1,30 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:views="using:NuclearOptionSDK.Studio.Views"
+             x:Class="NuclearOptionSDK.Studio.Views.LogicConstructorPanel"
+             MinHeight="280"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch">
+  <Grid x:Name="SplitRoot" Margin="4,4,4,4" MinHeight="180"
+        RowDefinitions="0.5*,6,0.5*" ColumnDefinitions="*">
+    <Border x:Name="TopPane" Grid.Row="0" Classes="panel" Padding="2" MinHeight="72">
+      <views:LogicNodeCanvas x:Name="ReferenceCanvas"/>
+    </Border>
+
+    <Grid x:Name="BottomPane" Grid.Row="2" RowDefinitions="Auto,*" MinHeight="72">
+      <TextBlock Grid.Row="0" Margin="4,4,4,2"
+                 Text="User graph · drag from Hierarchy here"
+                 Classes="unity-dock-title-compact"/>
+      <Border Grid.Row="1" Classes="panel" Padding="2" MinHeight="48">
+        <views:LogicNodeCanvas x:Name="UserCanvas"/>
+      </Border>
+    </Grid>
+
+    <GridSplitter x:Name="ConstructorSplit" Grid.Row="1"
+                  Height="6" Classes="unity-splitter"
+                  ResizeDirection="Rows" ZIndex="2000"
+                  Cursor="SizeNorthSouth"
+                  ToolTip.Tip="Drag to resize constructor panels"
+                  AutomationProperties.AutomationId="ConstructorSplitGrip"/>
+  </Grid>
+</UserControl>

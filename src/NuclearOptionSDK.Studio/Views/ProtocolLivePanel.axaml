@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="NuclearOptionSDK.Studio.Views.ProtocolLivePanel">
+  <Grid RowDefinitions="Auto,Auto,*,Auto,*" Margin="4">
+    <TextBlock Grid.Row="0" Classes="panel-header" Text="Protocol — live JSON"/>
+    <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,Auto,*" Margin="0,2,0,2">
+      <TextBlock VerticalAlignment="Center" Text="Trace:" Margin="0,0,4,0"/>
+      <Button x:Name="TraceStartButton" Grid.Column="1" Classes="compact" Content="Start" Width="56" Margin="0,0,4,0"/>
+      <Button x:Name="TraceStopButton" Grid.Column="2" Classes="compact" Content="Stop" Width="56"/>
+      <TextBlock x:Name="TraceStatusText" Grid.Column="3" VerticalAlignment="Center" Margin="8,0,0,0" Opacity="0.7" Text="idle"/>
+    </Grid>
+    <TextBox x:Name="JsonPreviewBox" Grid.Row="2" AcceptsReturn="True" IsReadOnly="True"
+             FontFamily="Consolas,Courier New" TextWrapping="Wrap"/>
+    <TextBlock Grid.Row="3" Classes="panel-header" Text="Telemetry (binding.watch)" Margin="0,4,0,0"/>
+    <TextBox x:Name="TelemetryBox" Grid.Row="4" AcceptsReturn="True" IsReadOnly="True"
+             FontFamily="Consolas,Courier New" TextWrapping="Wrap"/>
+  </Grid>
+</UserControl>

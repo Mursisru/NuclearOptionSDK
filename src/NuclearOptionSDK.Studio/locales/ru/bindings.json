@@ -1,0 +1,10 @@
+{
+  "bindings": [
+    { "id": "Aircraft.speed", "title": "Самолёт: скорость", "hint": "Aircraft.speed (m/s)", "path": "Aircraft.speed" },
+    { "id": "Aircraft.radarAlt", "title": "Самолёт: высота radar", "hint": "Aircraft.radarAlt", "path": "Aircraft.radarAlt" },
+    { "id": "Aircraft.gForce", "title": "Самолёт: G-force", "hint": "Aircraft.gForce", "path": "Aircraft.gForce" },
+    { "id": "Aircraft.airborne", "title": "Самолёт: в воздухе", "hint": "Aircraft.airborne", "path": "Aircraft.airborne" },
+    { "id": "Cockpit.velocity.y", "title": "Кабина: velocity Y", "hint": "cockpit.rb.velocity local Y", "path": "Aircraft.cockpit.rb.velocity.y" },
+    { "id": "Cockpit.velocity.z", "title": "Кабина: velocity Z", "hint": "cockpit.rb.velocity local Z", "path": "Aircraft.cockpit.rb.velocity.z" }
+  ]
+}

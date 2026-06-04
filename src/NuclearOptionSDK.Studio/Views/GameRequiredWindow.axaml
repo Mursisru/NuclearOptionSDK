@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="NuclearOptionSDK.Studio.Views.GameRequiredWindow"
+        Title="Nuclear Studio — game required"
+        Width="560" Height="320"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False">
+  <Border Padding="24" Background="#1e1e1e">
+    <StackPanel Spacing="12">
+      <TextBlock Text="Nuclear Studio" FontSize="18" FontWeight="SemiBold"/>
+      <TextBlock x:Name="StatusText" TextWrapping="Wrap" Opacity="0.9"/>
+      <TextBlock Text="Nuclear Option install folder (contains NuclearOption.exe):" Opacity="0.75" FontSize="11"/>
+      <TextBox x:Name="GamePathBox" PlaceholderText="C:\Program Files (x86)\Steam\steamapps\common\Nuclear Option"/>
+      <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Left"/>
+      <StackPanel Orientation="Horizontal" Spacing="8">
+        <Button x:Name="BrowseButton" Content="Browse…"/>
+        <Button x:Name="VerifyButton" Content="Verify game and decompiler"/>
+      </StackPanel>
+      <TextBlock x:Name="DetailText" TextWrapping="Wrap" FontSize="10" Opacity="0.65"/>
+      <Button x:Name="ContinueButton" Content="Launch Studio" IsEnabled="False" HorizontalAlignment="Stretch" Margin="0,8,0,0"/>
+    </StackPanel>
+  </Border>
+</Window>

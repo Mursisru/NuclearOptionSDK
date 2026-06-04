@@ -23,36 +23,27 @@ IDE and BepInEx bridge for **Nuclear Option** mod development (no-code logic mod
 
 ## Getting the app (pre-release)
 
-This repository is **source-first**. Pre-built binaries are attached to the GitHub **Pre-release** (not marked as Latest).
+Download **`NuclearOptionSDK-v0.7.0-pr1-win64.zip`** from the GitHub **Pre-release** [v0.7.0-pr1](https://github.com/Mursisru/NuclearOptionSDK/releases/tag/v0.7.0-pr1) (not marked as Latest).
 
-### Bridge (in-game)
+The zip contains:
 
-1. Download `NuclearOptionSDK-Bridge.zip` from the pre-release assets.
-2. Extract all DLLs into:
-   `Steam\steamapps\common\Nuclear Option\BepInEx\plugins\NuclearOptionSDK\`
-3. Restart the game. Check `BepInEx\LogOutput.log` for `Nuclear SDK Bridge` loaded.
+| Folder | Purpose |
+|--------|---------|
+| **`README-INSTALL.txt`** | Start here |
+| **`Studio\`** | Desktop IDE (`NuclearOptionSDK.Studio.exe` + all DLLs + `Defaults\`) |
+| **`Bridge\`** | BepInEx plugin folder to copy into the game |
 
-### Studio (desktop)
+See **`Studio\README.txt`** and **`Bridge\README.txt`** inside the zip for install steps.
 
-Build locally:
+**Requires:** .NET 8 Desktop Runtime (x64) for Studio — [download](https://dotnet.microsoft.com/download/dotnet/8.0).
+
+### Build from source (optional)
 
 ```powershell
 git clone https://github.com/Mursisru/NuclearOptionSDK.git
 cd NuclearOptionSDK
 copy Directory.Build.user.props.example Directory.Build.user.props
-# Edit NuclearOptionRoot in Directory.Build.user.props if needed
-
 dotnet build NuclearOptionSDK.slnx -c Release
-```
-
-Run:
-
-`src\NuclearOptionSDK.Studio\bin\Release\net8.0-windows\NuclearOptionSDK.Studio.exe`
-
-Or publish a portable folder:
-
-```powershell
-dotnet publish src\NuclearOptionSDK.Studio\NuclearOptionSDK.Studio.csproj -c Release -r win-x64 --self-contained false -o publish\Studio
 ```
 
 ## Quick start

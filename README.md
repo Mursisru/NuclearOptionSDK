@@ -17,8 +17,23 @@ IDE + BepInEx **WebSocket bridge** for **[Nuclear Option](https://store.steampow
 
 ---
 
+## Critical warnings
+
+> [!IMPORTANT]
+> **BepInEx 5 required for Bridge** - Studio connects to `ws://127.0.0.1:9005` only when Nuclear Option is running with the Bridge plugin loaded.
+
+> [!IMPORTANT]
+> **Restart Nuclear Option after every Bridge rebuild** - stale in-game DLL will not match Studio protocol.
+
+> [!WARNING]
+> **Do not mix Bridge and Studio versions** - use matched assets from the same release; mismatched protocol fails the WebSocket handshake.
+
+> [!NOTE]
+> **Game install path required for Studio** - API index / ILSpy decompilation needs `Assembly-CSharp.dll` at Studio startup.
+
 ## Table of contents
 
+- [Critical warnings](#critical-warnings)
 - [Quick start (Visual HUD)](#quick-start-visual-hud-no-code)
 - [Requirements](#requirements)
 - [Install](#install)

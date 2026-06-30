@@ -7,14 +7,6 @@
 [![Version](https://img.shields.io/badge/Version-0.7.0-green)](https://github.com/Mursisru/NuclearOptionSDK/releases/tag/v0.7.0)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow)](https://github.com/Mursisru/NuclearOptionSDK/blob/main/LICENSE)
 
-IDE + BepInEx **WebSocket bridge** for **[Nuclear Option](https://store.steampowered.com/app/2168680/Nuclear_Option/)** mod development. **Nuclear Studio** (Avalonia desktop) connects to an in-game bridge plugin for scene inspection, API exploration, REPL, Visual HUD Editor, and mod scaffolding.
-
-**Bridge GUID:** `com.at747.nuclearoptionsdk.bridge`  
-**Release:** `0.7.0` · dev `0.7.0 Build DEV2VP1`
-
-> [!IMPORTANT]
-> **Game must be running** with BepInEx and the Bridge plugin loaded before Studio can connect (`ws://127.0.0.1:9005`). **Restart Nuclear Option** after every Bridge rebuild.
-
 ---
 
 ## Critical warnings
@@ -30,6 +22,14 @@ IDE + BepInEx **WebSocket bridge** for **[Nuclear Option](https://store.steampow
 
 > [!NOTE]
 > **Game install path required for Studio** - API index / ILSpy decompilation needs `Assembly-CSharp.dll` at Studio startup.
+
+IDE + BepInEx **WebSocket bridge** for **[Nuclear Option](https://store.steampowered.com/app/2168680/Nuclear_Option/)** mod development. **Nuclear Studio** (Avalonia desktop) connects to an in-game bridge plugin for scene inspection, API exploration, REPL, Visual HUD Editor, and mod scaffolding.
+
+**Bridge GUID:** `com.at747.nuclearoptionsdk.bridge`  
+**Release:** `0.7.0` · dev `0.7.0 Build DEV2VP1`
+
+> [!IMPORTANT]
+> **Game must be running** with BepInEx and the Bridge plugin loaded before Studio can connect (`ws://127.0.0.1:9005`). **Restart Nuclear Option** after every Bridge rebuild.
 
 ## Table of contents
 

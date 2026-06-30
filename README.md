@@ -10,12 +10,9 @@
 ---
 
 ## Critical warnings
-
 > [!IMPORTANT]
-> **BepInEx 5 required for Bridge** - Studio connects to `ws://127.0.0.1:9005` only when Nuclear Option is running with the Bridge plugin loaded.
-
-> [!IMPORTANT]
-> **Restart Nuclear Option after every Bridge rebuild** - stale in-game DLL will not match Studio protocol.
+> - **BepInEx 5 required for Bridge** - Studio connects to `ws://127.0.0.1:9005` only when Nuclear Option is running with the Bridge plugin loaded.
+> - **Restart Nuclear Option after every Bridge rebuild** - stale in-game DLL will not match Studio protocol.
 
 > [!WARNING]
 > **Do not mix Bridge and Studio versions** - use matched assets from the same release; mismatched protocol fails the WebSocket handshake.

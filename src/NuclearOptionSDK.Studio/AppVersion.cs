@@ -3,7 +3,7 @@ namespace NuclearOptionSDK.Studio;
 public static class AppVersion
 {
     public const string ReleaseBase = "0.7.0";
-    public const string VersionChannel = "PR-R";
+    public const string VersionChannel = "DEV";
     public const int CycleBuildNumber = 2;
     public const string ChangeLetters = "VP";
     public const int SubNumber = 1;

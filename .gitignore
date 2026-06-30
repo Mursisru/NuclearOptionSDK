@@ -4,12 +4,12 @@ obj/
 *.user
 Directory.Build.user.props
 release/
-
-# Dev screenshots / smoke artifacts
-.capture-frames/
-capture-frames/
-smoke-log.txt
-tools/cap/
-
-# Legacy dump catalog (excluded from build; do not publish)
-src/NuclearOptionSDK.Studio/Services/NoGameParameterCatalog.Data.cs
+*.zip
+libs/
+Directory.Build.props
+.cursorrules
+.cursor/
+ffmpeg.exe
+local_build_scripts/
+_buildroot/
+.debug/

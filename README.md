@@ -1,80 +1,59 @@
-# NuclearOptionSDK
+**Developer:** Mursisru
 
-IDE and BepInEx bridge for **Nuclear Option** mod development (no-code logic mods, visual HUD, game API explorer, live debugging).
+# NuclearOptionSDK v0.1
 
-**Current pre-release build:** `0.7.0 Build PR-R2VP1`  
-**Target release:** `0.7.0`
+[![Nuclear Option](https://img.shields.io/badge/Game-Nuclear%20Option-blue)](https://store.steampowered.com/app/2168680/Nuclear_Option/) [![Nuclear Option SDK](https://img.shields.io/badge/Project-Nuclear%20Option%20SDK-blue)](https://github.com/Mursisru/NuclearOptionSDK) [![Version](https://img.shields.io/badge/Version-0.7.0-green)]() [![License](https://img.shields.io/badge/License-MIT-lightgrey)](LICENSE)
 
-> Development is paused for about one week. This pre-release is for early testers and contributors — not a stable “latest” release.
 
-## Components
+IDE + BepInEx Bridge for **Nuclear Option** mod development. **v0.2** adds **Visual HUD Editor (no-code)** and dev file logging.
 
-| Component | Role |
-|-----------|------|
-| **Nuclear Studio** | Avalonia desktop IDE (Windows, .NET 8) |
-| **Nuclear Bridge** | BepInEx plugin in-game (WebSocket `ws://127.0.0.1:9005`) |
-| **ModKit / LogicCore** | Logic-mod codegen, MSBuild scaffold, runtime bindings |
+## Quick start (Visual HUD, no code)
 
-## Requirements
+1. Start NO + Bridge, open Studio, **Connect**.
+2. Tab **Visual HUD Editor** → **+ Label** → drag on canvas → edit text/color.
+3. **Preview in game** — labels appear in cockpit overlay.
+4. **Save layout** — `%AppData%\NuclearOptionSDK\layouts\visual-hud.json`
 
-- **Nuclear Option** (Steam) with **BepInEx 5 x64**
-- **Windows** + [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (to build Studio from source)
-- Game install path configured in Studio (Settings) — `Assembly-CSharp.dll` required
+## Dev logs
 
-## Getting the app (pre-release)
+- Studio: `%AppData%\NuclearOptionSDK\logs\studio-*.log`
+- Bridge: `BepInEx\plugins\NuclearOptionSDK_Data\logs\bridge-*.log`
+- See `docs/DEV_LOGGING.md`
 
-Download **`NuclearOptionSDK-v0.7.0-pr1-win64.zip`** from the GitHub **Pre-release** [v0.7.0-pr1](https://github.com/Mursisru/NuclearOptionSDK/releases/tag/v0.7.0-pr1) (not marked as Latest).
+## Projects
 
-The zip contains:
+| Project | Output |
+|---------|--------|
+| `NuclearOptionSDK.Protocol` | Shared IPC DTOs |
+| `NuclearOptionSDK.Decompiler` | IL→C# via ILSpy engine (MIT), Studio-only |
+| `NuclearOptionSDK.Bridge` | `NuclearOptionSDK.Bridge_Engine.dll` + deps → `BepInEx/plugins/NuclearOptionSDK/` |
+| `NuclearOptionSDK.Studio` | Avalonia desktop IDE |
+| `NuclearOptionSDK.ModKit` | Harmony codegen + MSBuild mod scaffold |
 
-| Folder | Purpose |
-|--------|---------|
-| **`README-INSTALL.txt`** | Start here |
-| **`Studio\`** | Desktop IDE (`NuclearOptionSDK.Studio.exe` + all DLLs + `Defaults\`) |
-| **`Bridge\`** | BepInEx plugin folder to copy into the game |
-
-See **`Studio\README.txt`** and **`Bridge\README.txt`** inside the zip for install steps.
-
-**Requires:** .NET 8 Desktop Runtime (x64) for Studio — [download](https://dotnet.microsoft.com/download/dotnet/8.0).
-
-### Build from source (optional)
+## Build
 
 ```powershell
-git clone https://github.com/Mursisru/NuclearOptionSDK.git
-cd NuclearOptionSDK
-copy Directory.Build.user.props.example Directory.Build.user.props
+cd C:\Users\at747\source\repos\NuclearOptionSDK_Engine
 dotnet build NuclearOptionSDK.slnx -c Release
 ```
 
-## Quick start
+Bridge Release build copies **all dependency DLLs** to `BepInEx\plugins\NuclearOptionSDK\` (Fleck, Protocol, Roslyn, …). **Restart NO** after rebuild.
 
-1. Start **Nuclear Option** with Bridge installed.
-2. Run **Nuclear Studio** → set game path → **Connect** (`ws://127.0.0.1:9005`).
-3. **Scene / Game Code / Protocol** tabs — explore API, build logic graphs, **Method Hunter** trace.
-4. **Build Logic Mod** exports a BepInEx plugin from `%AppData%\NuclearOptionSDK\logic\project.json`.
+## Usage
 
-## Logs
+1. Start **Nuclear Option** with BepInEx and Bridge plugin loaded.
+2. Run **NuclearOptionSDK.Studio**.
+3. Connect to `ws://127.0.0.1:9005`, Test ping.
+4. Use Scene Explorer, API Explorer (offline Cecil), REPL, HUD Designer, Mod Builder.
+5. **Game Code**: ApiSurface (Cecil index + filters + labels) + ILSpy decompilation from `Assembly-CSharp.dll` — see `docs/API_SURFACE.md` and `docs/DECOMPILER.md`. **Game required** at startup.
 
-| App | Path |
-|-----|------|
-| Studio | `%AppData%\NuclearOptionSDK\logs\studio-*.log` |
-| Bridge | `BepInEx\plugins\NuclearOptionSDK_Data\logs\bridge-*.log` |
+## References
+- Unity Explorer patterns: `source\repos\UnityExplorer\` (GPL, read-only reference)
 
-See `docs/DEV_LOGGING.md`, `docs/API_SURFACE.md`, `docs/DECOMPILER.md`, `docs/PROTOCOL.md`.
+See `docs/REFERENCES.md`.
 
-## Build (full solution)
+---
 
-```powershell
-dotnet build NuclearOptionSDK.slnx -c Release
-dotnet test NuclearOptionSDK.slnx -c Release
-```
+## Keywords
 
-Bridge Release build can auto-deploy to your local game folder when `NuclearOptionRoot` points to the Steam install (see `NuclearOptionSDK.Bridge.csproj`).
-
-## Third-party
-
-ILSpy decompiler engine (MIT), Mono.Cecil — see `ThirdPartyNotices.txt`.
-
-## License
-
-MIT — see `LICENSE`.
+nuclear-option, modding, sdk, bepinex, harmony, csharp
